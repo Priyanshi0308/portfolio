@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Day Theme - Warm sunrise palette */
+    --background: 35 30% 96%;
+    --foreground: 25 20% 15%;
+    
+    --card: 35 25% 98%;
+    --card-foreground: 25 20% 15%;
+    
+    --popover: 35 25% 98%;
+    --popover-foreground: 25 20% 15%;
+    
+    --primary: 25 70% 55%;
+    --primary-foreground: 35 30% 98%;
+    
+    --secondary: 145 25% 75%;
+    --secondary-foreground: 145 40% 20%;
+    
+    --muted: 35 20% 90%;
+    --muted-foreground: 25 15% 45%;
+    
+    --accent: 195 45% 70%;
+    --accent-foreground: 195 60% 15%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 25 70% 55%;
+    
+    --radius: 0.75rem;
+
+    /* Pixel Scene Colors - Day */
+    --sky-top: 195 60% 80%;
+    --sky-bottom: 35 80% 85%;
+    --sun: 45 95% 65%;
+    --sun-glow: 40 90% 75%;
+    --cloud: 0 0% 98%;
+    --ground: 145 30% 65%;
+    --ground-dark: 145 35% 50%;
+    --building: 25 25% 75%;
+    --building-dark: 25 30% 60%;
+    --tree: 145 45% 45%;
+    --tree-dark: 145 50% 35%;
+    --water: 195 50% 65%;
+    --path: 35 35% 70%;
+    
+    /* Butterfly */
+    --butterfly-primary: 320 60% 65%;
+    --butterfly-secondary: 280 55% 70%;
+    --butterfly-accent: 45 90% 70%;
+    
+    /* UI Accents */
+    --overlay-bg: 35 25% 98% / 0.95;
+    --text-highlight: 25 70% 55%;
+    
+    /* Typography */
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  .dark {
+    /* Night Theme - Lavender indigo palette */
+    --background: 250 30% 12%;
+    --foreground: 250 20% 92%;
+    
+    --card: 250 25% 16%;
+    --card-foreground: 250 20% 92%;
+    
+    --popover: 250 25% 16%;
+    --popover-foreground: 250 20% 92%;
+    
+    --primary: 270 50% 70%;
+    --primary-foreground: 250 30% 10%;
+    
+    --secondary: 220 40% 50%;
+    --secondary-foreground: 220 20% 95%;
+    
+    --muted: 250 20% 20%;
+    --muted-foreground: 250 15% 60%;
+    
+    --accent: 320 45% 65%;
+    --accent-foreground: 320 60% 95%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 250 20% 25%;
+    --input: 250 20% 25%;
+    --ring: 270 50% 70%;
+
+    /* Pixel Scene Colors - Night */
+    --sky-top: 250 40% 15%;
+    --sky-bottom: 270 35% 25%;
+    --sun: 250 30% 85%;
+    --sun-glow: 270 40% 75%;
+    --cloud: 250 20% 35%;
+    --ground: 250 25% 25%;
+    --ground-dark: 250 30% 18%;
+    --building: 250 20% 30%;
+    --building-dark: 250 25% 22%;
+    --tree: 180 30% 25%;
+    --tree-dark: 180 35% 18%;
+    --water: 220 40% 35%;
+    --path: 270 25% 35%;
+    
+    /* Butterfly - Night */
+    --butterfly-primary: 270 60% 75%;
+    --butterfly-secondary: 320 50% 70%;
+    --butterfly-accent: 180 60% 70%;
+    
+    /* UI Accents */
+    --overlay-bg: 250 25% 16% / 0.95;
+    --text-highlight: 270 50% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  /* Scene transitions */
+  .scene-section {
+    @apply min-h-screen relative overflow-hidden;
+  }
+  
+  .scene-content {
+    @apply relative z-10;
+  }
+  
+  /* Pixel art container */
+  .pixel-canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Editorial text styling */
+  .editorial-text {
+    @apply text-lg md:text-xl leading-relaxed tracking-wide;
+    font-family: var(--font-body);
+    font-weight: 300;
+  }
+  
+  .editorial-heading {
+    font-family: var(--font-display);
+    @apply text-3xl md:text-5xl font-medium tracking-tight;
+  }
+  
+  .editorial-subheading {
+    font-family: var(--font-display);
+    @apply text-xl md:text-2xl font-normal italic;
+  }
+  
+  /* Clean overlay for project cards */
+  .project-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+    background: hsl(var(--overlay-bg));
+    backdrop-filter: blur(8px);
+  }
+  
+  .project-card {
+    @apply bg-card rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto;
+  }
+  
+  /* Gentle hover reveals */
+  .hover-reveal {
+    @apply opacity-0 transition-opacity duration-500;
+  }
+  
+  .hover-trigger:hover .hover-reveal {
+    @apply opacity-100;
+  }
+  
+  /* Scroll reveal animations */
+  .reveal-on-scroll {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+  
+  .reveal-on-scroll.revealed {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  /* Butterfly styles - z-5 so it goes behind scene-content (z-10) */
+  .butterfly {
+    @apply fixed pointer-events-none z-[5];
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+  
+  /* Day/Night toggle */
+  .theme-toggle {
+    @apply fixed top-6 right-6 z-50 p-3 rounded-full;
+    @apply bg-card/80 backdrop-blur-sm border border-border;
+    @apply shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply cursor-pointer hover:scale-105;
+  }
+  
+  /* Pixel block helper */
+  .pixel-block {
+    @apply absolute;
+    image-rendering: pixelated;
+  }
+  
+  /* Stars for night mode */
+  .star {
+    @apply absolute rounded-full bg-white/80;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+  
+  /* Milestone marker */
+  .milestone-marker {
+    @apply w-4 h-4 rounded-full bg-primary;
+    @apply shadow-lg;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+}
